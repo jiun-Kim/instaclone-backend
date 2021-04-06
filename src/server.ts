@@ -10,6 +10,7 @@ import { typeDefs, resolvers } from "./schema";
 
 const apollo = new ApolloServer({
   typeDefs, resolvers,
+  playground: true,
   context: async (ctx) => {
     if (ctx.req) {
       return {
