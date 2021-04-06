@@ -20,6 +20,19 @@ const resolvers: Resolvers = {
                 }
             })
         },
+        isLiked: async ({ id }, _, { client, loggedInUser }) => {
+            const isLiked = client.like.findFirst({
+                where: {
+                    photoId: id,
+                    userId: loggedInUser.id
+                }
+            })
+            if (isLiked) {
+                return true
+            } else {
+                false
+            }
+        },
         likes: ({ id }, _, { client }) => {
             return client.like.count({
                 where: {
@@ -27,7 +40,7 @@ const resolvers: Resolvers = {
                 }
             })
         },
-        comments: ({ id }, _, { client }) => {
+        commentNumbers: ({ id }, _, { client }) => {
             return client.comment.count({
                 where: {
                     photoId: id

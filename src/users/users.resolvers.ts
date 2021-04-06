@@ -15,7 +15,7 @@ const resolvers: Resolvers = {
         totalFollowing: ({ id }, _, { client }) => {
             return client.user.count({
                 where: {
-                    following: {
+                    followers: {
                         some: { id }
                     }
                 }
